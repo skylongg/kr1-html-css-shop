@@ -47,6 +47,13 @@
 }
 
 /*
+  Плавная прокрутка при переходе к якорям.
+*/
+html {
+  scroll-behavior: smooth;
+}
+
+/*
   Убираем стандартный внешний отступ браузера у body.
   Без этого вокруг страницы может появиться белая рамка.
 */
@@ -108,6 +115,14 @@ a:hover {
 a:focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 3px;
+}
+
+/*
+  Подсветка элемента, к которому выполнен переход по якорной ссылке.
+*/
+:target {
+  outline: 2px dashed var(--color-primary);
+  outline-offset: 4px;
 }
 
 /*
@@ -201,6 +216,31 @@ a:focus-visible {
 */
 .site-nav__list a:hover {
   text-decoration: underline;
+}
+
+/*
+  Хлебные крошки на внутренних страницах.
+*/
+.breadcrumbs {
+  max-width: var(--container-width);
+  margin: 0 auto var(--space-md);
+  font-size: 14px;
+  color: var(--color-muted);
+}
+
+/*
+  Ссылки в хлебных крошках.
+*/
+.breadcrumbs a {
+  color: var(--color-primary);
+}
+
+/*
+  Разделитель перед названием текущей страницы.
+*/
+.breadcrumbs span::before {
+  content: " / ";
+  color: var(--color-muted);
 }
 
 /*
