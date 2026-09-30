@@ -72,6 +72,9 @@ GitHub Pages: https://skylongg.github.io/kr1-html-css-shop/
 - переменные для цветов и скруглений;
 - состояния `:hover`, `:focus-visible`, `:disabled`;
 - визуальная подсветка ошибочных полей через `aria-invalid`;
+- Flexbox для шапки и меню (`.site-header`, `.site-nav__list`);
+- CSS Grid для сетки карточек товаров (`.product-grid`);
+- позиционирование: `relative` у карточки, `absolute` у бейджа, `fixed` и `z-index` у кнопки «Наверх»;
 - структурированный файл `css/style.css`.
 
 ## Автор
