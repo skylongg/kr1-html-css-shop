@@ -66,29 +66,11 @@ body {
 }
 
 /*
-  Задаём внутренние отступы для основных областей страницы.
+  Задаём внутренние отступы для основной области страницы.
   Это делает содержимое визуально отделённым от краёв окна браузера.
 */
-header,
-main,
-footer {
+main {
   padding: var(--space-lg);
-}
-
-/*
-  Оформляем шапку страницы.
-  Используется нейтральный фон из переменной.
-*/
-header {
-  background-color: var(--color-surface);
-}
-
-/*
-  Оформляем подвал страницы тем же фоном,
-  чтобы визуально отделить его от основного содержимого.
-*/
-footer {
-  background-color: var(--color-surface);
 }
 
 /* ===============================
@@ -126,17 +108,23 @@ a:focus-visible {
 }
 
 /*
-  Пока это обычная ссылка, но визуально она оформляется как кнопка.
+  Button block: shared geometry only.
+  Colors come from the --primary and --secondary modifiers.
 */
 .button {
   display: inline-block;
   padding: var(--space-sm) var(--space-md);
-  color: var(--color-white);
-  background-color: var(--color-primary);
-  text-decoration: none;
   border: none;
   border-radius: var(--radius-sm);
+  font: inherit;
+  text-decoration: none;
   cursor: pointer;
+}
+
+/* Primary button: filled with the main color */
+.button--primary {
+  color: var(--color-white);
+  background-color: var(--color-primary);
 }
 
 /*
@@ -144,9 +132,21 @@ a:focus-visible {
   Цвет текста задаём явно, иначе у ссылки-кнопки
   его переопределит правило a:hover.
 */
-.button:hover {
+.button--primary:hover {
   color: var(--color-white);
   background-color: var(--color-primary-dark);
+}
+
+/* Secondary button: outlined, filled on hover */
+.button--secondary {
+  color: var(--color-primary);
+  background-color: transparent;
+  border: 1px solid var(--color-primary);
+}
+
+.button--secondary:hover {
+  color: var(--color-white);
+  background-color: var(--color-primary);
 }
 
 /*
@@ -160,7 +160,8 @@ a:focus-visible {
 /*
   Отключённая кнопка визуально приглушается.
 */
-.button:disabled {
+.button:disabled,
+.button--disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }
@@ -169,13 +170,19 @@ a:focus-visible {
    4. Компоненты страницы
    =============================== */
 
+/* Site header block */
+.site-header {
+  background-color: var(--color-surface);
+}
+
 /*
   Ограничиваем ширину содержимого шапки,
   чтобы оно не растягивалось слишком сильно на широких экранах.
 */
-.site-header {
+.site-header__inner {
   max-width: var(--container-width);
   margin: 0 auto;
+  padding: var(--space-lg);
   /* Flexbox: logo on the left, menu on the right */
   display: flex;
   flex-wrap: wrap;
@@ -187,10 +194,10 @@ a:focus-visible {
 /*
   Оформляем текстовый логотип.
 */
-.site-logo {
-  font-weight: bold;
-  text-decoration: none;
+.site-header__logo {
+  font-weight: 700;
   color: var(--color-text);
+  text-decoration: none;
 }
 
 /*
@@ -212,7 +219,7 @@ a:focus-visible {
   Menu links. inline-block lets the link take padding,
   which enlarges the click area.
 */
-.site-nav__list a {
+.site-nav__link {
   display: inline-block;
   padding: var(--space-sm) var(--space-md);
   color: var(--color-primary);
@@ -223,7 +230,18 @@ a:focus-visible {
 /*
   Hover: highlight the menu item with a filled background.
 */
-.site-nav__list a:hover {
+.site-nav__link:hover {
+  color: var(--color-white);
+  background-color: var(--color-primary);
+}
+
+.site-nav__link:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+/* Link to the current page */
+.site-nav__link--active {
   color: var(--color-white);
   background-color: var(--color-primary);
 }
@@ -241,14 +259,14 @@ a:focus-visible {
 /*
   Ссылки в хлебных крошках.
 */
-.breadcrumbs a {
+.breadcrumbs__link {
   color: var(--color-primary);
 }
 
 /*
   Разделитель перед названием текущей страницы.
 */
-.breadcrumbs span::before {
+.breadcrumbs__current::before {
   content: " / ";
   color: var(--color-muted);
 }
@@ -276,7 +294,7 @@ a:focus-visible {
 /*
   Убираем лишний верхний отступ у заголовков разделов.
 */
-.section h2 {
+.section__title {
   margin-top: 0;
 }
 
@@ -297,7 +315,6 @@ a:focus-visible {
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
-  margin-bottom: 0;
   padding: var(--space-md);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
@@ -311,18 +328,40 @@ a:focus-visible {
   border-color: var(--color-primary);
 }
 
-/*
-  Убираем лишний верхний отступ у заголовка карточки.
-*/
-.product-card h3 {
-  margin-top: 0;
+/* Highlighted card */
+.product-card--featured {
+  border-color: var(--color-primary);
+}
+
+/* Discounted product card */
+.product-card--discount {
+  border-color: var(--color-danger);
+}
+
+.product-card__title {
+  margin: 0;
+  color: var(--color-text);
+}
+
+.product-card__description {
+  margin: 0;
+  color: var(--color-muted);
+}
+
+.product-card__price {
+  margin: 0;
+  font-weight: 700;
+}
+
+.product-card--discount .product-card__price {
+  color: var(--color-danger);
 }
 
 /*
   margin-top: auto pushes the button to the bottom of the card,
   align-self keeps it from stretching to the full width.
 */
-.product-card .button {
+.product-card__button {
   margin-top: auto;
   align-self: flex-start;
 }
@@ -373,7 +412,7 @@ a:focus-visible {
 }
 
 /* Group of related filter fields */
-.filters-form fieldset {
+.filters-form__group {
   margin: 0;
   padding: var(--space-md);
   border: 1px solid var(--color-border);
@@ -381,18 +420,18 @@ a:focus-visible {
 }
 
 /* Field group title */
-.filters-form legend {
+.filters-form__legend {
   font-weight: 700;
 }
 
 /* Each filter label on its own line */
-.filters-form label {
+.filters-form__label {
   display: block;
   margin-bottom: var(--space-sm);
 }
 
 /* Price range number inputs */
-.filters-form input[type="number"] {
+.filters-form__input {
   width: 100%;
   padding: 8px 10px;
   border: 1px solid var(--color-border);
@@ -419,6 +458,15 @@ a:focus-visible {
   background-color: var(--color-surface);
 }
 
+/*
+  Оформляем подвал страницы тем же фоном, что и шапку,
+  чтобы визуально отделить его от основного содержимого.
+*/
+.site-footer {
+  padding: var(--space-lg);
+  background-color: var(--color-surface);
+}
+
 /* ===============================
    5. Форма и модальное окно
    =============================== */
@@ -441,28 +489,33 @@ a:focus-visible {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
+.order-dialog__title {
+  margin-top: 0;
+}
+
 /*
   Поле формы.
   Каждый блок получает нижний отступ.
 */
-.form-field {
+.order-form__field {
   margin-bottom: var(--space-md);
 }
 
 /*
   Подпись поля.
 */
-.form-field label {
+.order-form__label {
   display: block;
   margin-bottom: var(--space-xs);
 }
 
 /*
   Основные поля формы.
+  The checkbox has its own element class, so it keeps its natural width.
 */
-.form-field input,
-.form-field select,
-.form-field textarea {
+.order-form__input,
+.order-form__select,
+.order-form__textarea {
   width: 100%;
   padding: 10px 12px;
   border: 1px solid var(--color-border);
@@ -471,16 +524,9 @@ a:focus-visible {
 }
 
 /*
-  Checkbox не должен занимать всю ширину.
-*/
-.form-field input[type="checkbox"] {
-  width: auto;
-}
-
-/*
   Подсказка под полем телефона.
 */
-.form-field small {
+.order-form__hint {
   display: block;
   margin-top: var(--space-xs);
   color: var(--color-muted);
@@ -489,19 +535,18 @@ a:focus-visible {
 /*
   Поле при наведении мыши.
 */
-.form-field input:hover,
-.form-field select:hover,
-.form-field textarea:hover {
+.order-form__input:hover,
+.order-form__select:hover,
+.order-form__textarea:hover {
   border-color: var(--color-primary);
 }
 
 /*
   Видимый фокус для клавиатурной навигации.
 */
-.form-field input:focus-visible,
-.form-field select:focus-visible,
-.form-field textarea:focus-visible,
-.form-actions button:focus-visible {
+.order-form__input:focus-visible,
+.order-form__select:focus-visible,
+.order-form__textarea:focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 3px;
 }
@@ -509,17 +554,17 @@ a:focus-visible {
 /*
   Подсветка ошибочных полей.
   Атрибут aria-invalid добавляется через JavaScript.
-  Класс .form-field в селекторе нужен, чтобы правило
-  было сильнее, чем .form-field input.
 */
-.form-field [aria-invalid="true"] {
+.order-form__input[aria-invalid="true"],
+.order-form__select[aria-invalid="true"],
+.order-form__textarea[aria-invalid="true"] {
   border-color: var(--color-danger);
 }
 
 /*
   Кнопки формы.
 */
-.form-actions {
+.order-form__actions {
   display: flex;
   gap: var(--space-md);
   margin-top: var(--space-lg);
