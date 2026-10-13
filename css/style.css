@@ -194,31 +194,38 @@ a:focus-visible {
 }
 
 /*
-  Убираем стандартные отступы и маркеры списка навигации.
+  Flexbox: menu items in a centered row that wraps when needed.
+  Default list margins and markers are removed.
 */
 .site-nav__list {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  /* Flexbox: menu items in a row */
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
   gap: var(--space-md);
+  padding: 0;
+  margin: var(--space-md) 0 0;
+  list-style: none;
 }
 
 /*
-  Оформляем ссылки меню.
+  Menu links. inline-block lets the link take padding,
+  which enlarges the click area.
 */
 .site-nav__list a {
+  display: inline-block;
+  padding: var(--space-sm) var(--space-md);
   color: var(--color-primary);
   text-decoration: none;
+  border-radius: var(--radius-sm);
 }
 
 /*
-  При наведении мыши подчёркиваем ссылку.
+  Hover: highlight the menu item with a filled background.
 */
 .site-nav__list a:hover {
-  text-decoration: underline;
+  color: var(--color-white);
+  background-color: var(--color-primary);
 }
 
 /*
@@ -273,11 +280,11 @@ a:focus-visible {
   margin-top: 0;
 }
 
-/* CSS Grid: product cards in columns */
-.product-grid {
+/* CSS Grid: three equal columns of product cards */
+.products-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: var(--space-md);
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
 }
 
 /*
@@ -286,6 +293,11 @@ a:focus-visible {
 .product-card {
   /* Positioning context for the badge */
   position: relative;
+  /* Flexbox: card content goes top to bottom */
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin-bottom: 0;
   padding: var(--space-md);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
@@ -306,6 +318,15 @@ a:focus-visible {
   margin-top: 0;
 }
 
+/*
+  margin-top: auto pushes the button to the bottom of the card,
+  align-self keeps it from stretching to the full width.
+*/
+.product-card .button {
+  margin-top: auto;
+  align-self: flex-start;
+}
+
 /* Badge pinned to the top-right corner of the card */
 .product-card__badge {
   position: absolute;
@@ -316,6 +337,67 @@ a:focus-visible {
   color: var(--color-white);
   background-color: var(--color-danger);
   border-radius: var(--radius-sm);
+}
+
+/*
+  Catalog page layout: filters on the left, products on the right.
+  CSS Grid with named areas.
+*/
+.catalog-layout {
+  max-width: var(--container-width);
+  margin: 0 auto var(--space-xl);
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  grid-template-areas: "filters products";
+  gap: var(--space-lg);
+}
+
+/* Sidebar with filters */
+.catalog-filters {
+  grid-area: filters;
+  padding: var(--space-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+}
+
+/* Product list area */
+.catalog-products {
+  grid-area: products;
+}
+
+/* Filters form: gap separates the field groups */
+.filters-form {
+  display: grid;
+  gap: var(--space-md);
+}
+
+/* Group of related filter fields */
+.filters-form fieldset {
+  margin: 0;
+  padding: var(--space-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+}
+
+/* Field group title */
+.filters-form legend {
+  font-weight: 700;
+}
+
+/* Each filter label on its own line */
+.filters-form label {
+  display: block;
+  margin-bottom: var(--space-sm);
+}
+
+/* Price range number inputs */
+.filters-form input[type="number"] {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font: inherit;
 }
 
 /* "Back to top" button stays in the corner while scrolling */
