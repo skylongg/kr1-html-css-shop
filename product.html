@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Подробная карточка товара учебного интернет-магазина: описание, характеристики и цена.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Учебный интернет-магазин">
+  <meta property="og:description" content="Учебный frontend-проект интернет-магазина.">
+  <meta property="og:image" content="https://skylongg.github.io/kr1-html-css-shop/images/preview.jpg">
+  <title>Товар 1 — Учебный интернет-магазин</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="site-header" id="top">
+    <div class="site-header__inner">
+      <a class="site-header__logo" href="index.html">ShopProject</a>
+
+      <nav class="site-nav" aria-label="Основная навигация">
+        <ul class="site-nav__list">
+          <li class="site-nav__item">
+            <a class="site-nav__link" href="index.html">Главная</a>
+          </li>
+          <li class="site-nav__item">
+            <a class="site-nav__link" href="catalog.html">Каталог</a>
+          </li>
+          <li class="site-nav__item">
+            <a class="site-nav__link" href="order.html">Заказ</a>
+          </li>
+          <li class="site-nav__item">
+            <a class="site-nav__link" href="contacts.html">Контакты</a>
+          </li>
+          <li class="site-nav__item">
+            <a class="site-nav__link" href="index.html#advantages">Преимущества</a>
+          </li>
+          <li class="site-nav__item">
+            <a class="site-nav__link" href="index.html#popular">Популярные товары</a>
+          </li>
+          <li class="site-nav__item">
+            <a class="site-nav__link" href="index.html#contacts">Обратная связь</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <nav class="breadcrumbs" aria-label="Хлебные крошки">
+      <a class="breadcrumbs__link" href="index.html">Главная</a>
+      <span class="breadcrumbs__separator" aria-hidden="true">/</span>
+      <a class="breadcrumbs__link" href="catalog.html">Каталог</a>
+      <span class="breadcrumbs__current" aria-current="page">Товар 1</span>
+    </nav>
+
+    <article class="product-details">
+      <img
+        class="product-details__image"
+        src="images/product-1.svg"
+        alt="Товар 1 в фирменной синей упаковке"
+        width="800"
+        height="600"
+      >
+
+      <div class="product-details__info">
+        <p class="product-details__category">Аксессуары</p>
+        <h1 class="product-details__title">Товар 1</h1>
+        <p class="product-details__description">
+          Подробное описание учебного товара. Здесь рассказывается о назначении
+          товара, его особенностях и о том, кому он подойдёт.
+        </p>
+        <p class="product-details__price">1000 руб.</p>
+        <p class="product-details__stock">В наличии</p>
+
+        <div class="product-details__actions">
+          <a class="button button--primary" href="order.html">Оформить заявку</a>
+          <a class="button button--secondary" href="catalog.html">Вернуться в каталог</a>
+        </div>
+      </div>
+    </article>
+
+    <section class="section" id="specs">
+      <h2 class="section__title">Характеристики</h2>
+
+      <table class="product-table">
+        <caption class="product-table__caption">Характеристики товара</caption>
+        <thead>
+          <tr>
+            <th class="product-table__head" scope="col">Параметр</th>
+            <th class="product-table__head" scope="col">Значение</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="product-table__row">
+            <th class="product-table__cell product-table__cell--name" scope="row">Категория</th>
+            <td class="product-table__cell">Аксессуары</td>
+          </tr>
+          <tr class="product-table__row">
+            <th class="product-table__cell product-table__cell--name" scope="row">Цена</th>
+            <td class="product-table__cell">1000 руб.</td>
+          </tr>
+          <tr class="product-table__row">
+            <th class="product-table__cell product-table__cell--name" scope="row">Наличие</th>
+            <td class="product-table__cell">В наличии</td>
+          </tr>
+          <tr class="product-table__row">
+            <th class="product-table__cell product-table__cell--name" scope="row">Гарантия</th>
+            <td class="product-table__cell">12 месяцев</td>
+          </tr>
+          <tr class="product-table__row">
+            <th class="product-table__cell product-table__cell--name" scope="row">Доставка</th>
+            <td class="product-table__cell">1–3 рабочих дня</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="section" id="related">
+      <h2 class="section__title">Похожие товары</h2>
+
+      <div class="products-grid">
+        <article class="product-card product-card--new">
+          <span class="product-card__badge">Новинка</span>
+          <p class="product-card__category">Аксессуары</p>
+          <h3 class="product-card__title">Товар 6</h3>
+          <p class="product-card__description">Краткое описание учебного товара.</p>
+          <p class="product-card__price">Цена: 900 руб.</p>
+          <a class="button button--primary product-card__button" href="product.html">Подробнее</a>
+        </article>
+
+        <article class="product-card product-card--discount">
+          <span class="product-card__badge">Скидка</span>
+          <p class="product-card__category">Электроника</p>
+          <h3 class="product-card__title">Товар 3</h3>
+          <p class="product-card__description">Краткое описание учебного товара.</p>
+          <p class="product-card__price">
+            Цена: 2000 руб.
+            <del class="product-card__old-price">2500 руб.</del>
+          </p>
+          <a class="button button--primary product-card__button" href="product.html">Подробнее</a>
+        </article>
+
+        <article class="product-card">
+          <p class="product-card__category">Аксессуары</p>
+          <h3 class="product-card__title">Товар 9</h3>
+          <p class="product-card__description">Краткое описание учебного товара.</p>
+          <p class="product-card__price">Цена: 2600 руб.</p>
+          <a class="button button--primary product-card__button" href="product.html">Подробнее</a>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 Учебный проект. Все права защищены.</p>
+    <p>Дисциплина: Фронтенд и бэкенд разработка</p>
+  </footer>
+
+  <a class="button button--primary to-top" href="#top">↑ Наверх</a>
+
+</body>
+</html>

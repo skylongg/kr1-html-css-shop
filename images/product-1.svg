@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <rect width="800" height="600" fill="#eef5ff"/>
+  <ellipse cx="400" cy="500" rx="230" ry="28" fill="#dddddd"/>
+  <polygon points="400,140 620,230 400,320 180,230" fill="#3d7fcc"/>
+  <polygon points="180,230 400,320 400,500 180,410" fill="#0057b8"/>
+  <polygon points="620,230 400,320 400,500 620,410" fill="#003f86"/>
+  <polygon points="290,185 510,275 510,330 290,240" fill="#ffffff" opacity="0.85"/>
+  <text x="400" y="80" font-family="Arial, sans-serif" font-size="36" font-weight="700" fill="#222222" text-anchor="middle">ShopProject</text>
+</svg>
