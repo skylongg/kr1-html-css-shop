@@ -825,23 +825,57 @@ a:focus-visible {
   Элемент dialog сам умеет открываться поверх страницы.
 */
 .order-dialog {
-  width: min(100% - 32px, 640px);
+  width: min(100% - 32px, 560px);
   padding: 0;
   border: none;
   border-radius: var(--radius-lg);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
 }
 
 /* The open dialog appears with a short animation */
 .order-dialog[open] {
-  animation: dialog-show 0.25s ease-out;
+  animation: dialog-show 0.2s ease-out;
 }
 
 @keyframes dialog-show {
   from {
     opacity: 0;
-    transform: translateY(-20px) scale(0.97);
+    transform: translateY(-20px);
   }
+}
+
+/*
+  Padding is on the inner block, so a click on the dialog itself
+  means a click on the dark background.
+*/
+.order-dialog__inner {
+  position: relative;
+  padding: var(--space-lg);
+}
+
+/* Close button (cross) in the top-right corner */
+.order-dialog__close {
+  position: absolute;
+  top: var(--space-sm);
+  right: var(--space-sm);
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  font-size: 24px;
+  line-height: 1;
+  color: var(--color-muted);
+  background-color: transparent;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.order-dialog__close:hover {
+  color: var(--color-text);
+  background-color: var(--color-surface);
+}
+
+.order-dialog__close:focus-visible {
+  outline: 2px solid var(--color-primary);
 }
 
 /*
@@ -849,110 +883,21 @@ a:focus-visible {
   The page behind is also blurred.
 */
 .order-dialog::backdrop {
-  background-color: rgba(0, 20, 50, 0.55);
+  background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(3px);
 }
 
-/*
-  Content is inside the inner block, so a click on the dialog itself
-  means a click on the dark background.
-*/
-.order-dialog__inner {
-  position: relative;
-}
-
-/* Header with a gradient; stays on top while the form scrolls */
-.order-dialog__header {
-  position: sticky;
-  top: 0;
-  z-index: 1;
-  padding: var(--space-lg);
-  padding-right: 64px;
-  color: var(--color-white);
-  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
-}
-
-.order-dialog__subtitle {
-  margin: 0 0 var(--space-xs);
-  font-size: 14px;
-  opacity: 0.85;
-}
-
 .order-dialog__title {
-  margin: 0;
+  margin-top: 0;
 }
 
-/* Close button (cross) in the top-right corner */
-.order-dialog__close {
-  position: absolute;
-  top: var(--space-md);
-  right: var(--space-md);
-  width: 36px;
-  height: 36px;
-  padding: 0;
-  font-size: 24px;
-  line-height: 1;
-  color: var(--color-white);
-  background-color: rgba(255, 255, 255, 0.15);
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: background-color 0.2s, transform 0.2s;
-}
-
-/* The cross turns on hover */
-.order-dialog__close:hover {
-  background-color: rgba(255, 255, 255, 0.3);
-  transform: rotate(90deg);
-}
-
-.order-dialog__close:focus-visible {
-  outline: 2px solid var(--color-white);
-  outline-offset: 2px;
-}
-
-.order-dialog__body {
-  padding: var(--space-lg);
-  padding-bottom: 0;
-}
-
-/* Bottom part with the total and buttons; stays at the bottom while scrolling */
+/* Total and buttons at the bottom of the form */
 .order-dialog__footer {
-  position: sticky;
-  bottom: 0;
-  margin: 0 calc(-1 * var(--space-lg));
-  padding: var(--space-md) var(--space-lg);
-  background-color: var(--color-bg);
+  padding-top: var(--space-md);
   border-top: 1px solid var(--color-border);
 }
 
-/* Success screen after sending */
-.order-dialog__success {
-  padding: var(--space-xl) var(--space-lg);
-  text-align: center;
-}
-
-.order-dialog__success-icon {
-  width: 64px;
-  height: 64px;
-  margin: 0 auto var(--space-md);
-  font-size: 32px;
-  line-height: 64px;
-  color: var(--color-white);
-  background-color: var(--color-success);
-  border-radius: 50%;
-}
-
-.order-dialog__success-title {
-  margin: 0 0 var(--space-sm);
-}
-
-.order-dialog__success-text {
-  margin: 0 0 var(--space-lg);
-  color: var(--color-muted);
-}
-
-/* Selected product with the quantity buttons */
+/* Selected product and the quantity buttons in one row */
 .order-summary {
   display: flex;
   flex-wrap: wrap;
@@ -960,26 +905,14 @@ a:focus-visible {
   align-items: center;
   gap: var(--space-md);
   margin-bottom: var(--space-md);
-  padding: var(--space-md);
-  border-radius: var(--radius-md);
-  background-color: var(--color-surface-accent);
-}
-
-.order-summary__label {
-  margin: 0;
-  font-size: 12px;
-  text-transform: uppercase;
-  color: var(--color-muted);
 }
 
 .order-summary__name {
   margin: 0;
-  font-weight: 700;
 }
 
 .order-summary__price {
   margin: 0;
-  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -987,44 +920,27 @@ a:focus-visible {
 .quantity {
   display: flex;
   align-items: center;
-  border: 1px solid var(--color-border);
-  border-radius: 999px;
-  background-color: var(--color-bg);
+  gap: var(--space-xs);
 }
 
 .quantity__button {
-  width: 36px;
-  height: 36px;
-  font: inherit;
-  font-size: 20px;
-  color: var(--color-primary);
-  background-color: transparent;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-.quantity__button:hover {
-  background-color: var(--color-surface-accent);
-}
-
-.quantity__button:focus-visible {
-  outline: 2px solid var(--color-primary);
-}
-
-.quantity__button:disabled {
-  color: var(--color-border);
-  background-color: transparent;
-  cursor: not-allowed;
+  width: 40px;
+  padding: var(--space-sm) 0;
+  text-align: center;
 }
 
 .quantity__input {
-  width: 44px;
+  width: 56px;
+  padding: var(--space-sm) var(--space-xs);
   font: inherit;
-  font-weight: 700;
   text-align: center;
-  border: none;
-  background-color: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+}
+
+.quantity__input:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
 }
 
 /* Choice buttons made from radio inputs */
@@ -1043,34 +959,26 @@ a:focus-visible {
 .choice__text {
   display: inline-block;
   padding: var(--space-sm) var(--space-md);
-  border: 1px solid var(--color-border);
-  border-radius: 999px;
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-sm);
   cursor: pointer;
-  transition: background-color 0.2s, border-color 0.2s;
-}
-
-.choice__text small {
-  color: var(--color-muted);
+  transition: background-color 0.2s, color 0.2s;
 }
 
 .choice__item:hover .choice__text {
-  border-color: var(--color-primary);
+  background-color: var(--color-surface-accent);
 }
 
 /* Selected option */
 .choice__input:checked + .choice__text {
   color: var(--color-white);
   background-color: var(--color-primary);
-  border-color: var(--color-primary);
-}
-
-.choice__input:checked + .choice__text small {
-  color: var(--color-white);
 }
 
 .choice__input:focus-visible + .choice__text {
   outline: 2px solid var(--color-primary);
-  outline-offset: 2px;
+  outline-offset: 3px;
 }
 
 /* Promo code: field and button in one row */
@@ -1079,13 +987,8 @@ a:focus-visible {
   gap: var(--space-sm);
 }
 
-.promo__input {
-  text-transform: uppercase;
-}
-
 .promo__message {
   margin: var(--space-xs) 0 0;
-  font-size: 14px;
 }
 
 .promo__message:empty {
@@ -1108,7 +1011,6 @@ a:focus-visible {
 .order-total__row {
   display: flex;
   justify-content: space-between;
-  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -1117,8 +1019,6 @@ a:focus-visible {
 }
 
 .order-total__row--main {
-  margin-top: var(--space-xs);
-  font-size: 20px;
   font-weight: 700;
   color: var(--color-text);
 }
@@ -1129,13 +1029,6 @@ a:focus-visible {
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   background-color: var(--color-bg);
-}
-
-/* Two fields side by side */
-.order-form__row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-md);
 }
 
 /* Group of radio buttons without the default frame */
