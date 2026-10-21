@@ -230,24 +230,21 @@
 
   <dialog class="order-dialog" id="order-dialog" aria-labelledby="order-dialog-title">
     <div class="order-dialog__inner">
-      <div class="order-dialog__header">
-        <p class="order-dialog__subtitle">Быстрый заказ · ответим за 1 рабочий день</p>
-        <h2 class="order-dialog__title" id="order-dialog-title">Оформление заявки</h2>
-        <button class="order-dialog__close" type="button" aria-label="Закрыть окно" data-close-dialog>&times;</button>
-      </div>
+      <button class="order-dialog__close" type="button" aria-label="Закрыть окно" data-close-dialog>&times;</button>
 
-      <form class="order-form order-dialog__body" id="order-form" action="#" method="post" novalidate>
+      <h2 class="order-dialog__title" id="order-dialog-title">Оформление заявки</h2>
+
+      <form class="order-form" id="order-form" action="#" method="post" novalidate>
         <input id="selected-product" name="selected-product" type="hidden">
 
         <div class="order-summary">
-          <div class="order-summary__product">
-            <p class="order-summary__label">Вы заказываете</p>
-            <p class="order-summary__name" id="order-dialog-product"></p>
-            <p class="order-summary__price"><span id="order-dialog-price">0</span> руб. за шт.</p>
+          <div>
+            <p class="order-summary__name">Товар: <strong id="order-dialog-product"></strong></p>
+            <p class="order-summary__price">Цена: <span id="order-dialog-price">0</span> руб. за шт.</p>
           </div>
 
           <div class="quantity">
-            <button class="quantity__button" type="button" data-step="-1" aria-label="Уменьшить количество">&minus;</button>
+            <button class="button button--secondary quantity__button" type="button" data-step="-1" aria-label="Уменьшить количество">&minus;</button>
             <input
               class="quantity__input"
               id="order-quantity"
@@ -258,7 +255,7 @@
               value="1"
               aria-label="Количество"
             >
-            <button class="quantity__button" type="button" data-step="1" aria-label="Увеличить количество">+</button>
+            <button class="button button--secondary quantity__button" type="button" data-step="1" aria-label="Увеличить количество">+</button>
           </div>
         </div>
 
@@ -283,41 +280,39 @@
           <p class="order-form__error" id="order-name-error"></p>
         </div>
 
-        <div class="order-form__row">
-          <div class="order-form__field">
-            <label class="order-form__label" for="order-email">E-mail <span class="order-form__required" aria-hidden="true">*</span></label>
-            <input
-              class="order-form__input"
-              id="order-email"
-              name="email"
-              type="email"
-              placeholder="example@mail.ru"
-              autocomplete="email"
-              aria-describedby="order-email-error"
-              data-error="Введите e-mail в формате example@mail.ru."
-              required
-            >
-            <p class="order-form__error" id="order-email-error"></p>
-          </div>
+        <div class="order-form__field">
+          <label class="order-form__label" for="order-email">E-mail <span class="order-form__required" aria-hidden="true">*</span></label>
+          <input
+            class="order-form__input"
+            id="order-email"
+            name="email"
+            type="email"
+            placeholder="example@mail.ru"
+            autocomplete="email"
+            aria-describedby="order-email-error"
+            data-error="Введите e-mail в формате example@mail.ru."
+            required
+          >
+          <p class="order-form__error" id="order-email-error"></p>
+        </div>
 
-          <div class="order-form__field">
-            <label class="order-form__label" for="order-phone">Телефон <span class="order-form__required" aria-hidden="true">*</span></label>
-            <input
-              class="order-form__input"
-              id="order-phone"
-              name="phone"
-              type="tel"
-              inputmode="tel"
-              placeholder="+7 (900) 000-00-00"
-              pattern="^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$"
-              autocomplete="tel"
-              aria-describedby="order-phone-error order-phone-hint"
-              data-error="Введите телефон в формате +7 (900) 000-00-00."
-              required
-            >
-            <small class="order-form__hint" id="order-phone-hint">Формат: +7 (900) 000-00-00</small>
-            <p class="order-form__error" id="order-phone-error"></p>
-          </div>
+        <div class="order-form__field">
+          <label class="order-form__label" for="order-phone">Телефон <span class="order-form__required" aria-hidden="true">*</span></label>
+          <input
+            class="order-form__input"
+            id="order-phone"
+            name="phone"
+            type="tel"
+            inputmode="tel"
+            placeholder="+7 (900) 000-00-00"
+            pattern="^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$"
+            autocomplete="tel"
+            aria-describedby="order-phone-error order-phone-hint"
+            data-error="Введите телефон в формате +7 (900) 000-00-00."
+            required
+          >
+          <small class="order-form__hint" id="order-phone-hint">Формат: +7 (900) 000-00-00</small>
+          <p class="order-form__error" id="order-phone-error"></p>
         </div>
 
         <fieldset class="order-form__group">
@@ -325,11 +320,11 @@
           <div class="choice">
             <label class="choice__item">
               <input class="choice__input" type="radio" name="delivery" value="pickup" checked>
-              <span class="choice__text"><span aria-hidden="true">🏬</span> Самовывоз <small>бесплатно</small></span>
+              <span class="choice__text">Самовывоз <small>бесплатно</small></span>
             </label>
             <label class="choice__item">
               <input class="choice__input" type="radio" name="delivery" value="courier">
-              <span class="choice__text"><span aria-hidden="true">🚚</span> Курьер <small>300 руб.</small></span>
+              <span class="choice__text">Курьер <small>300 руб.</small></span>
             </label>
           </div>
         </fieldset>
@@ -339,15 +334,15 @@
           <div class="choice">
             <label class="choice__item">
               <input class="choice__input" type="radio" name="contact" value="call" checked>
-              <span class="choice__text"><span aria-hidden="true">📞</span> Звонок</span>
+              <span class="choice__text">Звонок</span>
             </label>
             <label class="choice__item">
               <input class="choice__input" type="radio" name="contact" value="email">
-              <span class="choice__text"><span aria-hidden="true">✉️</span> E-mail</span>
+              <span class="choice__text">E-mail</span>
             </label>
             <label class="choice__item">
               <input class="choice__input" type="radio" name="contact" value="messenger">
-              <span class="choice__text"><span aria-hidden="true">💬</span> Мессенджер</span>
+              <span class="choice__text">Мессенджер</span>
             </label>
           </div>
         </fieldset>
@@ -430,9 +425,7 @@
       </form>
 
       <div class="order-dialog__success" id="success-message" role="status" hidden>
-        <p class="order-dialog__success-icon" aria-hidden="true">✓</p>
-        <h3 class="order-dialog__success-title">Заявка отправлена!</h3>
-        <p class="order-dialog__success-text" id="success-text"></p>
+        <p class="success-message" id="success-text"></p>
         <button class="button button--primary" type="button" data-close-dialog>
           Продолжить покупки
         </button>
