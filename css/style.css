@@ -311,6 +311,13 @@ a:focus-visible {
   border-radius: var(--radius-lg);
 }
 
+/* Hero buttons in one row */
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+}
+
 /*
   Общий класс для разделов страницы.
 */
@@ -556,6 +563,90 @@ a:focus-visible {
   background-color: var(--color-surface);
 }
 
+/* Reviews: three columns */
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+}
+
+.review-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+}
+
+.review-card__rating {
+  margin: 0;
+  font-size: 14px;
+  color: var(--color-muted);
+}
+
+/* Stars */
+.review-card__rating span {
+  font-size: 18px;
+  color: #c77700;
+}
+
+.review-card__text {
+  margin: 0;
+  font-style: italic;
+}
+
+.review-card__text p {
+  margin: 0;
+}
+
+/* Author and date at the bottom of the card */
+.review-card__footer {
+  margin-top: auto;
+  font-size: 14px;
+  color: var(--color-muted);
+}
+
+.review-card__author {
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+/* FAQ: questions open and close on click (details/summary) */
+.faq__list {
+  display: grid;
+  gap: var(--space-sm);
+}
+
+.faq__item {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.faq__item[open] {
+  border-color: var(--color-primary);
+}
+
+.faq__question {
+  padding: var(--space-md);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.faq__question:hover {
+  color: var(--color-primary);
+}
+
+.faq__question:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+.faq__answer {
+  margin: 0;
+  padding: 0 var(--space-md) var(--space-md);
+}
+
 /* Contacts */
 .contacts-list {
   font-style: normal;
@@ -717,9 +808,62 @@ a:focus-visible {
 */
 .order-dialog {
   width: min(100% - 32px, 560px);
-  padding: var(--space-lg);
+  padding: 0;
   border: none;
   border-radius: var(--radius-lg);
+}
+
+/* The open dialog appears with a short animation */
+.order-dialog[open] {
+  animation: dialog-show 0.2s ease-out;
+}
+
+@keyframes dialog-show {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+/*
+  Padding is on the inner block, so a click on the dialog itself
+  means a click on the dark background.
+*/
+.order-dialog__inner {
+  position: relative;
+  padding: var(--space-lg);
+}
+
+/* Close button (cross) in the top-right corner */
+.order-dialog__close {
+  position: absolute;
+  top: var(--space-sm);
+  right: var(--space-sm);
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  font-size: 24px;
+  line-height: 1;
+  color: var(--color-muted);
+  background-color: transparent;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.order-dialog__close:hover {
+  color: var(--color-text);
+  background-color: var(--color-surface);
+}
+
+.order-dialog__close:focus-visible {
+  outline: 2px solid var(--color-primary);
+}
+
+/* Selected product */
+.order-dialog__product {
+  margin-top: 0;
+  color: var(--color-muted);
 }
 
 /*
@@ -771,6 +915,29 @@ a:focus-visible {
   font: inherit;
 }
 
+/* Note about required fields */
+.order-form__note {
+  margin-top: 0;
+  font-size: 14px;
+  color: var(--color-muted);
+}
+
+/* Required field star */
+.order-form__required {
+  color: var(--color-danger);
+}
+
+/* Error text under the field, empty until JS fills it */
+.order-form__error {
+  margin: var(--space-xs) 0 0;
+  font-size: 14px;
+  color: var(--color-danger);
+}
+
+.order-form__error:empty {
+  display: none;
+}
+
 /*
   Подсказка под полем телефона.
 */
@@ -794,7 +961,8 @@ a:focus-visible {
 */
 .order-form__input:focus-visible,
 .order-form__select:focus-visible,
-.order-form__textarea:focus-visible {
+.order-form__textarea:focus-visible,
+.order-form__checkbox:focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 3px;
 }
@@ -807,6 +975,19 @@ a:focus-visible {
 .order-form__select[aria-invalid="true"],
 .order-form__textarea[aria-invalid="true"] {
   border-color: var(--color-danger);
+  background-color: #fff5f6;
+}
+
+/* Bigger checkbox, easier to click */
+.order-form__checkbox {
+  width: 18px;
+  height: 18px;
+  margin: 0 var(--space-xs) 0 0;
+  vertical-align: middle;
+}
+
+.order-form__checkbox[aria-invalid="true"] {
+  outline: 2px solid var(--color-danger);
 }
 
 /*
