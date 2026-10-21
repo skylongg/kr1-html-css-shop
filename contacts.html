@@ -13,7 +13,7 @@
 </head>
 <body>
 
-  <header class="site-header">
+  <header class="site-header" id="top">
     <div class="site-header__inner">
       <a class="site-header__logo" href="index.html">ShopProject</a>
 
@@ -26,7 +26,10 @@
             <a class="site-nav__link" href="catalog.html">Каталог</a>
           </li>
           <li class="site-nav__item">
-            <a class="site-nav__link site-nav__link--active" href="contacts.html">Контакты</a>
+            <a class="site-nav__link" href="order.html">Заказ</a>
+          </li>
+          <li class="site-nav__item">
+            <a class="site-nav__link site-nav__link--active" href="contacts.html" aria-current="page">Контакты</a>
           </li>
           <li class="site-nav__item">
             <a class="site-nav__link" href="index.html#advantages">Преимущества</a>
@@ -45,7 +48,7 @@
   <main>
     <nav class="breadcrumbs" aria-label="Хлебные крошки">
       <a class="breadcrumbs__link" href="index.html">Главная</a>
-      <span class="breadcrumbs__current">Контакты</span>
+      <span class="breadcrumbs__current" aria-current="page">Контакты</span>
     </nav>
 
     <section class="section">
@@ -54,19 +57,19 @@
         Здесь размещается контактная информация учебного интернет-магазина.
       </p>
 
-      <ul>
-        <li>Телефон: +7 (900) 000-00-00</li>
-        <li>E-mail: info@example.com</li>
-        <li>Адрес: г. Москва, учебный проект</li>
-      </ul>
+      <address class="contacts-list">
+        <p>Телефон: <a href="tel:+79000000000">+7 (900) 000-00-00</a></p>
+        <p>E-mail: <a href="mailto:info@example.com">info@example.com</a></p>
+        <p>Адрес: г. Москва, учебный проект</p>
+      </address>
     </section>
 
     <section class="section" id="feedback">
       <h2 class="section__title">Обратная связь</h2>
       <p>
-        Для отправки заявки используйте форму в модальном окне на главной странице.
+        Чтобы задать вопрос или оформить заказ, заполните форму на странице заявки.
       </p>
-      <a class="button button--primary" href="index.html#contacts">Перейти к форме</a>
+      <a class="button button--primary" href="order.html">Перейти к форме</a>
     </section>
   </main>
 
@@ -74,6 +77,8 @@
     <p>&copy; 2026 Учебный проект. Все права защищены.</p>
     <p>Дисциплина: Фронтенд и бэкенд разработка</p>
   </footer>
+
+  <a class="button button--primary to-top" href="#top">↑ Наверх</a>
 
 </body>
 </html>
