@@ -424,6 +424,20 @@ a:focus-visible {
   color: var(--color-muted);
 }
 
+/* Product preview image */
+.product-card__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-sm);
+}
+
+/* Sold-out product image is grey */
+.product-card--sold-out .product-card__image {
+  filter: grayscale(1);
+  opacity: 0.6;
+}
+
 /* Category above the title */
 .product-card__category {
   margin: 0;
@@ -481,6 +495,7 @@ a:focus-visible {
   position: absolute;
   top: var(--space-sm);
   right: var(--space-sm);
+  z-index: 1;
   padding: 2px var(--space-sm);
   font-size: 12px;
   color: var(--color-white);
