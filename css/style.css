@@ -880,11 +880,9 @@ a:focus-visible {
 
 /*
   Затемнение фона за модальным окном.
-  The page behind is also blurred.
 */
 .order-dialog::backdrop {
   background-color: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(3px);
 }
 
 .order-dialog__title {
